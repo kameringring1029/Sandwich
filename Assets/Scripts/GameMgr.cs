@@ -11,6 +11,8 @@ public class GameMgr : MonoBehaviour {
     public Sprite[] icons;
     public string[] iconname;
 
+    public GameObject[] effect = new GameObject[4];
+
     public bool[] routeFlg = new bool[3];
     private string[] finIconName = new string[3];
 
@@ -44,8 +46,10 @@ public class GameMgr : MonoBehaviour {
         {
             if(finIconName[0] == "ビーチ" && finIconName[1] == "スケッチ" && finIconName[2] == "サクラウチ")
             {
-
-                GameObject.Find("ResultText").GetComponent<Text>().text = "Sandwich";
+                GameObject.Find("ResultText").GetComponent<Text>().color = new Color(255,0,0,255);
+                GameObject.Find("ResultText").GetComponent<Text>().text = "サンドイッチ！";
+                GameObject.Find("Sandwich").GetComponent<Image>().enabled = true;
+                effect[3].active = true;
             }
             else if(finIconName[0] == finIconName[1] && finIconName[1] ==  finIconName[2])
             {
@@ -83,5 +87,8 @@ public class GameMgr : MonoBehaviour {
         }
 
         finIconName[slotid] = IconName.GetComponent<Text>().text;
+
+
+        effect[slotid].active = true;
     }
 }
